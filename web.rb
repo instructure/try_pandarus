@@ -50,12 +50,14 @@ def exercise(number)
   case number
   when 1
     "~Exercise 1: Create a Pandarus client<br><br>" +
-    "  Create a 'client' by typing the following (include your own token):<br>" +
+    "Create a 'client' by typing the following (include your own token):<br>" +
     "<span style='color:red'>client = Pandarus::V1_api.new(prefix: 'https://pandamonium.instructure.com/api', token: '')</span>"
   when 2
-    " o h noes!"
+    "~Exercise 2: Search for Pandarus methods<br><br>" +
+    "Try searching for methods that list users in a course:<br>" +
+    "<span style='color:red'>search 'users', 'list'</span>"
   when 3
-    " i no clue!"
+    "~Exercise 3: List users in this course<br><br>"
   else
     "I don't have any exercise number #{number} for you."
   end
