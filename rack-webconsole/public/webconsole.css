@@ -38,6 +38,7 @@
 }
 #rack-webconsole div.result{
   font-weight: normal;
+  color: #BFB;
 }
 #rack-webconsole form div, #console form span {
   font-size: 14px;

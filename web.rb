@@ -55,21 +55,21 @@ def exercise(number)
   when 1
     "~Exercise 1: Create a Pandarus client<br><br>" +
     "Create a 'client' by typing the following (include your own API token):<br>" +
-    "<span style='color:red'>client = Pandarus::V1_api.new(prefix: 'https://pandamonium.instructure.com/api', token: '')</span>"
+    "<span style='color:#feef99'>client = Pandarus::V1_api.new(prefix: 'https://pandamonium.instructure.com/api', token: '')</span>"
   when 2
     "~Exercise 2: Search for Pandarus methods<br><br>" +
     "Try searching for methods that get a course:<br>" +
-    "<span style='color:red'>search 'get', 'course'</span>"
+    "<span style='color:#feef99'>search 'get', 'course'</span>"
   when 3
     "~Exercise 3: Find courses with SIS ID 'PANDA-101'<br><br>" +
-    "<span style='color:red'>client.get_single_course_courses('sis_course_id:PANDA-101', '').id</span><br>" +
+    "<span style='color:#feef99'>client.get_single_course_courses('sis_course_id:PANDA-101', '').id</span><br>" +
     "also note that this does the same thing:<br>" +
     "<span style='color:orange'>client.get_single_course_courses(17, '').id</span>"
   when 4
     "~Exercise 4: List users in this course<br>" +
     "(Tip: try searching for methods that 'list' 'users' in a 'course')<br><br>" +
     "Get users in PANDA-101:<br>" +
-    "<span style='color:red'>client.list_users_in_course_courses(17, '')</span>"
+    "<span style='color:#feef99'>client.list_users_in_course_courses(17, '')</span>"
   when 5
     "~That's it! Thanks for trying the exercises out.<br>" +
     "Now you can try other methods if you'd like to..."
