@@ -23,15 +23,17 @@
     if (event.which == 13) {
       webconsole.history.push(webconsole.query.val());
       webconsole.pointer = webconsole.history.length - 1;
+      var query_val = webconsole.query.val();
+      webconsole.query.val('');
       $.ajax({
         url: '$CONTEXT/webconsole',
         type: 'POST',
         dataType: 'json',
-        data: ({query: webconsole.query.val(), token: "$TOKEN"}),
+        data: ({query: query_val, token: "$TOKEN"}),
         success: function (data) {
           var query_class = data.previous_multi_line ? 'query_multiline' : 'query';
           var result = "<div class='" + query_class + "'>" +
-            escapeHTML(data.prompt + webconsole.query.val()) + "</div>";
+            escapeHTML(data.prompt + query_val) + "</div>";
           if (!data.multi_line) {
             // console.log('data not multi_line');
             // gData = data;
@@ -44,7 +46,6 @@
           $("#rack-webconsole .results_wrapper").scrollTop(
             $("#rack-webconsole .results").height()
           );
-          webconsole.query.val('');
         }
       });
     }
