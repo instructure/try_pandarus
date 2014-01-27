@@ -57,7 +57,12 @@ def exercise(number)
     "Try searching for methods that list users in a course:<br>" +
     "<span style='color:red'>search 'users', 'list'</span>"
   when 3
-    "~Exercise 3: List users in this course<br><br>"
+    "~Exercise 3: Find courses with SIS ID 'PANDA-101'<br><br>" +
+    ""
+  when 4
+    "~Exercise 4: List users in this course<br><br>" +
+    "Get users in PANDA-101:<br>" +
+    "<span style='color:red'>client.list_users_in_course_courses(17)</span>"
   else
     "I don't have any exercise number #{number} for you."
   end

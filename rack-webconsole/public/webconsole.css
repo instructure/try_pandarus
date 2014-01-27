@@ -16,6 +16,10 @@
   -webkit-box-shadow: 0px -4px 5px rgba(0,0,0,0.5);
   font-size: 11px;
 }
+#rack-webconsole a{
+  color: #feef99;
+  font-weight: bold;
+}
 #rack-webconsole div.query{
   margin-top: 10px;
   font-weight: bold;
