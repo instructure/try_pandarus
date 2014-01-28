@@ -25,13 +25,13 @@
     background-image: url(/panda.gif);
     background-size: 100%;
     width: 100%;
-    height: 2000px;
-    opacity : 0.2;
+    height: 200%;
+    opacity : 0.25;
 }
-#rack-webconsole a{
+/*#rack-webconsole a{
   color: #feef99;
   font-weight: bold;
-}
+}*/
 #rack-webconsole div.query{
   margin-top: 10px;
   font-weight: bold;
@@ -76,8 +76,8 @@
   float: left;
   height: 40px;
   line-height: 40px;
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: #aaa;
 }
 #rack-webconsole form div.input{
   width: 100%;
@@ -94,11 +94,11 @@
   padding: 0px;
   width: 100%;
   font-size: 30px;
-  background: white;
+  background: black;
   border: 0px;
   font-family: monospace;
-  color: black;
-  border: 1px solid red;
+  color: #ddd;
+  border: 2px solid yellow;
   height: 40px;
   line-height: 40px;
 }
@@ -117,4 +117,5 @@
   display: block;
   border-bottom: 2px solid #999;
   background-color: black;
+  font-size: 10px;
 }

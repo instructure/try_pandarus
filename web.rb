@@ -6,6 +6,10 @@ Rack::Webconsole.inject_jquery = true
 
 use Rack::Webconsole
 
+configure do
+  disable :protection
+end
+
 # after do
 #   response.body << <<-HTML
 #     <script>
@@ -28,10 +32,23 @@ use Rack::Webconsole
 def intro
 end
 
-def get_single_course_courses
-  "get_single_course_courses(id,include,opts={})"
+def clear
+  "~<script>$('.results').html('')</script>"
 end
 
+def help
+  "~<h5>Pandarus says: 'How may I help you?'</h5>" +
+  "<ul>" +
+  "<li><h5>Type 'client_help' for help in setting up your Pandarus Client.</h5></li>" +
+  "</ul>"
+end
+
+def client_help
+    "~<h5>To set up your Pandarus Client, paste this into your input box:</h5>" +
+    "<span>'client = Pandarus::V1_api.new(prefix: '', token: '')<span>" +
+    "<h5>Prefix should look like: 'https://canvas.instructure.com/api'</h5>"+
+    "<h5>Token should be your own Canvas API Token <a href=''><span class='glyphicon glyphicon-info-sign'></span><a/> : '76uytit87tyuiy98iuy897yiouy98oiuyy987'"
+end
 def search(*words)
   "~" + Pandarus::V1_api.instance_methods.select do |method|
     words.all? do |word|
@@ -53,15 +70,15 @@ end
 def exercise(number)
   case number
   when 1
-    "~<span style='color:red'>&hearts;</span> Exercise 1: Create a Pandarus client<br><br>" +
-    "Create a 'client' by typing the following (include your own API token):<br>" +
+    "~<h4 class='text-primary'><span style='color:red'>&hearts;</span>&nbsp;Exercise 1: Create a Pandarus client</h4>" +
+    "<h5 class='text-muted'>Create a 'client' by typing the following (include your own API token):</h5>" +
     "<span style='color:#feef99'>client = Pandarus::V1_api.new(prefix: 'https://pandamonium.instructure.com/api', token: '')</span>"
   when 2
-    "~<span style='color:red'>&hearts;</span> Exercise 2: Search for Pandarus methods<br><br>" +
-    "Try searching for methods that get a course:<br>" +
+    "~<h4 class='text-primary'><span style='color:red'>&hearts;</span> Exercise 2: Search for Pandarus methods</h4>" +
+    "<h5 class='text-muted'><span class='glyphicon glyphicon-search'></span></i>&nbspTry searching for methods that get a course:</h5>" +
     "<span style='color:#feef99'>search 'get', 'course'</span>"
   when 3
-    "~<span style='color:red'>&hearts;</span> Exercise 3: Find courses with SIS ID 'PANDA-101'<br><br>" +
+    "~<h4 class='text-primary'><span style='color:red'>&hearts;</span> Exercise 3: Find courses with SIS ID 'PANDA-101'</h4>" +
     "<span style='color:#feef99'>client.get_single_course_courses('sis_course_id:PANDA-101', '').id</span><br>" +
     "also note that this does the same thing:<br>" +
     "<span style='color:orange'>client.get_single_course_courses(17, '').id</span>"
@@ -84,8 +101,7 @@ get '/' do
   <head>
     <title>Try Pandarus</title>
   </head>
-  <body>
-    Try Pandarus
+  <body style='background-color: #000;'>
   </body>
   </html>
   HTML

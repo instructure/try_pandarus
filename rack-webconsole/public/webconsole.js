@@ -88,11 +88,11 @@
       } else {
         $("#rack-webconsole form input").blur();
       }
-      $("#rack-webconsole .banner").append("Welcome to Try Pandarus!<br><br>");
-      $("#rack-webconsole .banner").append("Pandarus Docs: <a href='http://rubydoc.info/gems/pandarus/Pandarus/V1_api'>http://rubydoc.info/gems/pandarus/Pandarus/V1_api</a><br><br>");
-      $("#rack-webconsole .banner").append("To try an exercise, type:<br>");
-      $("#rack-webconsole .banner").append("  exercise 1<br>");
-      $("#rack-webconsole .banner").append("  exercise 2(..4)<br>");
+      $("#rack-webconsole .banner").append("<h4 class='text-center'>Welcome to Try Pandarus!</h4>");
+      $("#rack-webconsole .banner").append("<h5 class='text-left'>Pandarus Docs: <a class='text-primary' href='http://rubydoc.info/gems/pandarus/Pandarus/V1_api'>http://rubydoc.info/gems/pandarus/Pandarus/V1_api</a></h5>");
+      $("#rack-webconsole .banner").append("<h5>Start your first exercise, type: exercise 1</h5>");
+      // $("#rack-webconsole .banner").append("<h5>  exercise 1</h5>");
+      // $("#rack-webconsole .banner").append("<h5>  exercise 2(..4)</h5>");
 
       webconsole.query.val('exercise 1')
     });
