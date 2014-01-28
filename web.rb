@@ -90,3 +90,7 @@ get '/' do
   </html>
   HTML
 end
+
+get '/panda.gif' do
+  send_file 'panda.gif'
+end
