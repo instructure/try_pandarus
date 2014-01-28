@@ -2,7 +2,11 @@ require 'ripl'
 
 class Rack::Webconsole
   module Shell
-    def self.eval_query(query)
+    def self.eval_query(query, user)
+      $sandbox ||= {}
+      $sandbox[user] ||= Sandbox.new
+      Ripl.shell.name = user
+
       # Initialize ripl plugins
       @before_loop_called ||= Ripl.shell.before_loop
 
@@ -36,7 +40,7 @@ class Rack::Webconsole
       # Force conversion to symbols due to issues with lovely 1.8.7
       boilerplate = local_variables.map(&:to_sym) + [:ls, :result]
 
-      $sandbox.instance_eval """
+      $sandbox[@name].instance_eval """
         result = (#{query})
         ls = (local_variables.map(&:to_sym) - [#{boilerplate.map(&:inspect).join(', ')}])
         @locals ||= {}

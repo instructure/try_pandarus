@@ -66,6 +66,14 @@ module Rack
       @app = app
     end
 
+    def random_token
+      Digest::SHA1.hexdigest("#{rand(36**8)}#{Time.now}")[4..20]
+    end
+
+    def set_user_session(env)
+      env['rack.session']['user'] ||= random_token
+    end
+
     # Decides where to send the request. In case the path is `/webconsole`
     # (e.g. when calling the {Repl} endpoint), pass the request onto the
     # {Repl}. Otherwise, pass it onto the {Assets} middleware, which will
@@ -73,6 +81,7 @@ module Rack
     #
     # @param [Hash] env a Rack request environment.
     def call(env)
+      set_user_session(env)
       if env['PATH_INFO'] == '/webconsole'
         Repl.new(@app).call(env)
       else

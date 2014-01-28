@@ -1,9 +1,11 @@
 require 'sinatra'
 require 'rack/webconsole'
+require 'rack/session/cookie'
 require 'pandarus'
 
 Rack::Webconsole.inject_jquery = true
 
+use Rack::Session::Cookie, :secret => 'w.e.b-c.o.n.s.o.l.e'
 use Rack::Webconsole
 
 configure do

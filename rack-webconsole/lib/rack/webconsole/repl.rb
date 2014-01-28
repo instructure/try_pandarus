@@ -63,12 +63,12 @@ module Rack
         status, headers, response = @app.call(env)
 
         req = Rack::Request.new(env)
+        session = env['rack.session']
         params = req.params
 
         return [status, headers, response] unless check_legitimate(req)
 
-        $sandbox ||= Sandbox.new
-        hash = Shell.eval_query params['query']
+        hash = Shell.eval_query params['query'], session['user']
         response_body = MultiJson.encode(hash)
         headers = {}
         headers['Content-Type'] = 'application/json'
@@ -79,7 +79,7 @@ module Rack
       private
 
       def check_legitimate(req)
-        req.post? && !Repl.token.nil? && req.params['token'] == Repl.token
+        req.post? # && !Repl.token.nil? && req.params['token'] == Repl.token
       end
     end
   end
