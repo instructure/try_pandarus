@@ -77,12 +77,12 @@ def exercise(number)
     "<span style='color:#feef99'>client = Pandarus::V1_api.new(prefix: 'https://pandamonium.instructure.com/api', token: '')</span>"
   when 2
     "~<h4 class='text-primary'><span style='color:red'>&hearts;</span> Exercise 2: Search for Pandarus methods</h4>" +
-    "<h5 class='text-muted'><span class='glyphicon glyphicon-search'></span></i>&nbspTry searching for methods that get a course:</h5>" +
+    "<h5 class='text-muted'><span class='glyphicon glyphicon-search'></span></i>&nbspTry searching for methods related to 'get' and 'course':</h5>" +
     "<span style='color:#feef99'>search 'get', 'course'</span>"
   when 3
     "~<h4 class='text-primary'><span style='color:red'>&hearts;</span> Exercise 3: Find courses with SIS ID 'PANDA-101'</h4>" +
     "<span style='color:#feef99'>client.get_single_course_courses('sis_course_id:PANDA-101', '').id</span><br>" +
-    "also note that this does the same thing:<br>" +
+    "also note that this does the same thing, using a Canvas ID of 17 instead of a SIS ID of PANDA-101:<br>" +
     "<span style='color:orange'>client.get_single_course_courses(17, '').id</span>"
   when 4
     "~<span style='color:red'>&hearts;</span> Exercise 4: List users in this course<br>" +
