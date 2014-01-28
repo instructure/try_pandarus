@@ -109,6 +109,5 @@ get '/' do
   HTML
 end
 
-get '/panda.gif' do
-  send_file 'panda.gif'
-end
+get '/panda.gif' do send_file 'panda.gif' end
+get '/panda-still.jpg' do send_file 'panda-still.jpg' end

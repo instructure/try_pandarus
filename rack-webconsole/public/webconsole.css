@@ -28,6 +28,12 @@
     height: 200%;
     opacity : 0.25;
 }
+@-moz-document url-prefix() {
+  #rack-webconsole:before {
+    top: -100px;
+    background-image: url(/panda-still.jpg);
+  }
+}
 /*#rack-webconsole a{
   color: #feef99;
   font-weight: bold;
