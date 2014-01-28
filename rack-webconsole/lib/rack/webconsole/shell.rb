@@ -5,18 +5,20 @@ class Rack::Webconsole
     def self.eval_query(query, user)
       $sandbox ||= {}
       $sandbox[user] ||= Sandbox.new
-      Ripl.shell.name = user
+      $shell ||= {}
+      $shell[user] ||= Ripl::Shell.create(Ripl.config)
+      $shell[user].name = user
 
       # Initialize ripl plugins
-      @before_loop_called ||= Ripl.shell.before_loop
+      @before_loop_called ||= $shell[user].before_loop
 
-      Ripl.shell.input = query
-      Ripl.shell.loop_once
+      $shell[user].input = query
+      $shell[user].loop_once
       {}.tap do |hash|
-        hash[:result] = Ripl.shell.return_result
-        hash[:multi_line] = Ripl.shell.multi_line?
-        hash[:previous_multi_line] = Ripl.shell.previous_multi_line?
-        hash[:prompt] = Ripl.shell.previous_multi_line? ?
+        hash[:result] = $shell[user].return_result
+        hash[:multi_line] = $shell[user].multi_line?
+        hash[:previous_multi_line] = $shell[user].previous_multi_line?
+        hash[:prompt] = $shell[user].previous_multi_line? ?
           Ripl.config[:multi_line_prompt] : Ripl.config[:prompt]
       end
     end
@@ -75,4 +77,4 @@ Ripl::Shell.include Rack::Webconsole::Shell
 # must come after Webconsole plugin
 require 'ripl/multi_line'
 
-at_exit { Ripl.shell.after_loop }
+at_exit { $shell.values.each{ |s| s.after_loop } if $shell && !$shell.empty? }
